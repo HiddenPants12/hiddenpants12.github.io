@@ -1026,7 +1026,7 @@ function setOrbitalVel(body2) {
             x: basePower * bToAM.x,
             y: basePower * bToAM.y
         };
-        Matter.Body.addForce(body2, v);
+        Matter.Body.setVelocity(body2, v);
         console.log(bToA);
         console.log(v);
     }
