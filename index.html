@@ -1274,6 +1274,7 @@ Events.on(mouseConstraint, "mousedown", function() {
     if (mouseConstraint.body != null) {} else {
         if (selectedBottomBar == 0) {
             spawn();
+            mouseConstraint.body = null;
         }
     }
 }); //document.getElementById("bottomBar").style.display = "block"
