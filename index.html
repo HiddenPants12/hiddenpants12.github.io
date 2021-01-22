@@ -1021,11 +1021,12 @@ function setOrbitalVel(body2) {
     if (FG.body1.mass > body2.mass) {
         bToA = Matter.Vector.sub(FG.body1.position, body2.position);
         bToAM = Matter.Vector.magnitude(bToA);
+        basePower = Math.sqrt(G * FG.body1.mass / bToA);
         v = {
-            x: Math.sqrt(G * FG.body1.mass / Math.abs(bToA.x)),
-            y: Math.sqrt(G * FG.body1.mass / Math.abs(bToA.y))
+            x: basePower * bToAM.x,
+            y: basePower * bToAM.y
         };
-        Matter.Body.setVelocity(body2, v);
+        Matter.Body.addForce(body2, v);
         console.log(bToA);
         console.log(v);
     }
