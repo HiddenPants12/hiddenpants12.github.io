@@ -1022,8 +1022,8 @@ function setOrbitalVel(body2) {
         bToA = Matter.Vector.sub(FG.body1.position, body2.position);
         bToAM = Matter.Vector.magnitude(bToA);
         v = {
-            x: Math.sqrt(G * FG.body1.mass / bToA),
-            y: Math.sqrt(G * FG.body1.mass / bToA)
+            x: Math.sqrt(G * FG.body1.mass / Math.abs(bToA.x)),
+            y: Math.sqrt(G * FG.body1.mass / Math.abs(bToA.y))
         };
         Matter.Body.setVelocity(body2, v);
         console.log(bToA);
@@ -1067,7 +1067,8 @@ function createCelestialBody(name, fakeRadius, RRadius, RMass, imgWidth, imgHeig
         }
     }));
     var trueMass = RMass / ratio;
-    body.mass = trueMass; // setOrbitalVel(body)
+    body.mass = trueMass; 
+    setOrbitalVel(body)
     if (wrapBodies) {
         body.plugin.wrap = {
             min: {
