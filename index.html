@@ -1021,10 +1021,10 @@ function setOrbitalVel(body2) {
         }
     }
     if (FG.body1.mass > body2.mass) {
-        var bToA = Matter.Vector.sub(FG.body1.position, body2.position);
-        bToAM = Matter.Vector.magnitude(bToA);
-        normalised = Matter.Vector.normalise(bToA);
-        basePower = Math.sqrt(G * FG.body1.mass / getDistance(FG.body1.position, body2.position));
+        bToA = Matter.Vector.sub(FG.body1.position, body2.position);
+        let bToAM = Matter.Vector.magnitude(bToA);
+        let normalised = Matter.Vector.normalise(bToA);
+        let basePower = Math.sqrt(G * FG.body1.mass / getDistance(FG.body1.position, body2.position));
         v = {x: basePower, y: 0};
         Matter.Body.applyForce(body2, body2.position, v);
         console.log(v);
