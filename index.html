@@ -1014,18 +1014,22 @@ function setOrbitalVel(body2) {
             break;
         }
         if (Math.abs(FgCalc2(body2, particles[i])) > FG.force) {
-            FG.force = Math.abs(FgCalc2(body2, particles[i]));
-            FG.body1 = particles[i];
+            if(body2 != particles[i]) {
+                FG.force = Math.abs(FgCalc2(body2, particles[i]));
+                FG.body1 = particles[i];
+            }
         }
     }
     if (FG.body1.mass > body2.mass) {
-        bToA = Matter.Vector.sub(body2.position, FG.body1.position);
+        bToA = Matter.Vector.sub(FG.body1.position, body2.position);
         bToAM = Matter.Vector.magnitude(bToA);
         normalised = Matter.Vector.normalise(bToA);
         basePower = Math.sqrt(G * FG.body1.mass / bToAM);
         v = Matter.Vector.mult(normalised, basePower)
         Matter.Body.applyForce(body2, body2.position, v);
         console.log(v);
+        console.log(basePower);
+        console.log(normalised);
     }
 } // add bodies
 world.bodies = [];
