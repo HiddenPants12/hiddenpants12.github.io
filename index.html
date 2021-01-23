@@ -1021,7 +1021,7 @@ function setOrbitalVel(body2) {
         }
     }
     if (FG.body1.mass > body2.mass) {
-        let r = getDistance(FG.body1.mass, body2.mass)'
+        let r = getDistance(FG.body1.mass, body2.mass);
         let u = G * (FG.body1.mass + body2.mass);
         let speed = u * (2 / r - 1 / r);
         v = {x: speed, y: 0};
