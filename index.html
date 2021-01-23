@@ -1021,15 +1021,15 @@ function setOrbitalVel(body2) {
         }
     }
     if (FG.body1.mass > body2.mass) {
-        bToA = Matter.Vector.sub(FG.body1.position, body2.position);
+        var bToA = Matter.Vector.sub(FG.body1.position, body2.position);
         bToAM = Matter.Vector.magnitude(bToA);
         normalised = Matter.Vector.normalise(bToA);
-        basePower = Math.sqrt(G * FG.body1.mass / bToAM);
-        v = Matter.Vector.mult(normalised, basePower)
+        basePower = Math.sqrt(G * FG.body1.mass / getDistance(FG.body1.position, body2.position));
+        v = {x: basePower, y: 0};
         Matter.Body.applyForce(body2, body2.position, v);
         console.log(v);
-        console.log(basePower);
-        console.log(normalised);
+        console.log(bToA);
+        console.log(bToAM);
     }
 } // add bodies
 world.bodies = [];
