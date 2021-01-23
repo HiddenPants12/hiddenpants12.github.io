@@ -1083,7 +1083,7 @@ function createCelestialBody(name, fakeRadius, RRadius, RMass, imgWidth, imgHeig
     }
     particles.push(body);
     World.add(world, body);
-    setOrbitalVel(body);
+    // setOrbitalVel(body);
 }
 
 function loadIMGUpdates(img, imgWidth, imgHeight) {
@@ -1159,7 +1159,7 @@ var mouse = Mouse.create(render.canvas),
         }
     });
 World.add(world, mouse);
-// World.add(world, mouseConstraint); // keep the mouse in sync with rendering
+World.add(world, mouseConstraint); // keep the mouse in sync with rendering
 render.mouse = mouse;
 Matter.Render.lookAt(render, screenNew);
 var zoom = 1;
