@@ -1024,7 +1024,7 @@ function setOrbitalVel(body2) {
         normalised = Matter.Vector.normalise(bToA);
         basePower = Math.sqrt(G * FG.body1.mass / bToAM);
         v = Matter.Vector.mult(normalised, basePower)
-        Matter.Body.setVelocity(body2, v);
+        Matter.Body.applyForce(body2, body2.position, v);
         console.log(v);
     }
 } // add bodies
