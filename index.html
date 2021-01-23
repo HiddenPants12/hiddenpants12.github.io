@@ -1019,7 +1019,7 @@ function setOrbitalVel(body2) {
         }
     }
     if (FG.body1.mass > body2.mass) {
-        bToA = Matter.Vector.sub(FG.body1.position, body2.position);
+        bToA = Matter.Vector.sub(body2.position, FG.body1.position);
         bToAM = Matter.Vector.magnitude(bToA);
         normalised = Matter.Vector.normalise(bToA);
         basePower = Math.sqrt(G * FG.body1.mass / bToAM);
@@ -1066,7 +1066,6 @@ function createCelestialBody(name, fakeRadius, RRadius, RMass, imgWidth, imgHeig
     }));
     var trueMass = RMass / ratio;
     body.mass = trueMass; 
-    setOrbitalVel(body)
     if (wrapBodies) {
         body.plugin.wrap = {
             min: {
@@ -1081,6 +1080,7 @@ function createCelestialBody(name, fakeRadius, RRadius, RMass, imgWidth, imgHeig
     }
     particles.push(body);
     World.add(world, body);
+    setOrbitalVel(body);
 }
 
 function loadIMGUpdates(img, imgWidth, imgHeight) {
@@ -1156,7 +1156,7 @@ var mouse = Mouse.create(render.canvas),
         }
     });
 World.add(world, mouse);
-World.add(world, mouseConstraint); // keep the mouse in sync with rendering
+// World.add(world, mouseConstraint); // keep the mouse in sync with rendering
 render.mouse = mouse;
 Matter.Render.lookAt(render, screenNew);
 var zoom = 1;
